@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Abhay Tiwari</title>
-<link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="%23ffffff" stroke="%23059669" stroke-width="6"/><circle cx="50" cy="50" r="12" fill="%23059669"/></svg>'>
+<!-- Custom Favicon: Bold 'a' + Emerald Gradient Nabla (∇) -->
+<link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="28" fill="%23ffffff"/><text x="36" y="70" font-family="-apple-system,BlinkMacSystemFont,SF Pro Text,Segoe UI,Roboto,sans-serif" font-size="62" font-weight="800" fill="%231c1917" text-anchor="middle">a</text><path d="M60 28 L82 28 L71 47 Z" fill="%23059669"/></svg>'>
 <style>
     :root {
         --bg: #faf9f6;             /* Warm alabaster canvas */
@@ -55,8 +56,8 @@
     }
 
     /* CUSTOM CURSORS */
-    body.cursor-train, body.cursor-train * {
-        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size:24px;'><text y='24'>🚂</text></svg>") 16 16, auto !important;
+    body.cursor-f1, body.cursor-f1 * {
+        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size:24px;'><text y='24'>🏎️</text></svg>") 16 16, auto !important;
     }
     body.cursor-cricket, body.cursor-cricket * {
         cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size:24px;'><text y='24'>🏏</text></svg>") 16 16, auto !important;
@@ -86,6 +87,8 @@
         justify-content: space-between;
         align-items: center;
         padding-bottom: 3.5rem;
+        flex-wrap: wrap;
+        gap: 1rem;
     }
 
     .nav-brand {
@@ -106,6 +109,33 @@
         border-radius: 50%;
         display: inline-block;
         box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .resume-link {
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        color: var(--text-primary);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        padding: 4px 12px;
+        border-radius: 20px;
+        box-shadow: var(--shadow-subtle);
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        transition: all 0.2s var(--ease);
+    }
+
+    .resume-link:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        text-decoration: none;
     }
 
     .cursor-switches {
@@ -235,7 +265,7 @@
         margin-top: 3px;
     }
 
-    /* RL STATUS CHIP (CONFIGURABLE) */
+    /* RL STATUS CHIP */
     .rl-status-pill {
         background: var(--surface);
         border: 1px solid var(--border);
@@ -299,7 +329,7 @@
         background: var(--border);
     }
 
-    /* SIMPLIFIED INQUIRIES */
+    /* INQUIRIES */
     .inquiry-stack {
         display: flex;
         flex-direction: column;
@@ -405,6 +435,7 @@
     .links {
         display: flex;
         gap: 1.2rem;
+        flex-wrap: wrap;
     }
 
     .copy-email-btn {
@@ -460,10 +491,15 @@
             <span class="live-dot"></span>
             <span>Abhay Tiwari &bull; Research Monograph</span>
         </div>
-        <div class="cursor-switches">
-            <button class="c-btn active" onclick="setCursor('default')">default</button>
-            <button class="c-btn" onclick="setCursor('train')" title="Press 'T' on keyboard">🚂 rail</button>
-            <button class="c-btn" onclick="setCursor('cricket')" title="Press 'C' on keyboard">🏏 cricket</button>
+        <div class="nav-right">
+            <a href="/Abhay_Tiwari_Resume.pdf" target="_blank" class="resume-link">
+                resume ↗
+            </a>
+            <div class="cursor-switches">
+                <button class="c-btn active" onclick="setCursor('default')">default</button>
+                <button class="c-btn" onclick="setCursor('f1')" title="Press 'F' on keyboard">🏎️ f1</button>
+                <button class="c-btn" onclick="setCursor('cricket')" title="Press 'C' on keyboard">🏏 cricket</button>
+            </div>
         </div>
     </nav>
 
@@ -480,7 +516,7 @@
                 Most of machine learning today is about guessing patterns from static pictures. I am obsessed with <strong>Reinforcement Learning</strong>—how an agent discovers what to do when every action changes its future. My goal is to build agents that solve problems with mathematical guarantees, not just trial and error.
             </p>
             <p>
-                Outside machine learning, I decode Indian Railways routing networks and spend hours watching five-day Test cricket.
+                Outside research, I'm hooked on Formula 1 telemetry, motorcycles, and the pure tactical attrition of Test cricket.
             </p>
         </div>
 
@@ -500,12 +536,12 @@
             <div class="proof-label">Amazon ML Challenge</div>
         </div>
         <div class="proof-box">
-            <div class="proof-metric">14–96×</div>
-            <div class="proof-label">GPU Memory Savings</div>
+            <div class="proof-metric">250+</div>
+            <div class="proof-label">Leetcode Problems</div>
         </div>
     </div>
 
-    <!-- RL DEPTH VARIABLE (USER CUSTOMIZABLE IN SCRIPT) -->
+    <!-- RL DEPTH VARIABLE -->
     <div class="rl-status-pill">
         <span class="rl-tag">Current RL Capability</span>
         <span class="rl-val" id="rl-depth" onclick="cycleRLLevel()" title="Click to cycle variable">
@@ -514,7 +550,7 @@
     </div>
 
     <main>
-        <!-- OPEN QUESTIONS (WRITTEN SIMPLY WITH ANALOGIES) -->
+        <!-- OPEN QUESTIONS -->
         <section>
             <h2 class="section-title">Open Questions I'm Exploring</h2>
             
@@ -574,9 +610,10 @@
     <footer>
         <div>&copy; 2026 Abhay Tiwari</div>
         <div class="links">
+            <a href="/Abhay_Tiwari_Resume.pdf" target="_blank">resume (pdf)</a>
             <a href="https://github.com/xabhaytiwari" target="_blank">github</a>
             <a href="https://linkedin.com/in/abhay-tiwari-in" target="_blank">linkedin</a>
-            <a href="https://leetcode.com/u/abhay-tiwari/" target="_blank">leetcode (250+)</a>
+            <a href="https://leetcode.com/u/abhay-tiwari/" target="_blank">leetcode</a>
             <button class="copy-email-btn" onclick="copyEmail()">copy email 📋</button>
         </div>
     </footer>
@@ -586,10 +623,6 @@
 <div id="toast">Email copied to clipboard!</div>
 
 <script>
-    /* =========================================================================
-       CONFIGURABLE RL LEVEL VARIABLE
-       Change this line or cycle through with clicks!
-       ========================================================================= */
     const rlLevelList = [
         "Can prove Bellman convergence in Banach spaces",
         "UCB1 and Median Elimination",
@@ -617,12 +650,12 @@
 
     /* KEYBOARD SHORTCUTS & CURSOR TOGGLE */
     function setCursor(type) {
-        document.body.classList.remove('cursor-train', 'cursor-cricket');
+        document.body.classList.remove('cursor-f1', 'cursor-cricket');
         const btns = document.querySelectorAll('.c-btn');
         btns.forEach(b => b.classList.remove('active'));
 
-        if (type === 'train') {
-            document.body.classList.add('cursor-train');
+        if (type === 'f1') {
+            document.body.classList.add('cursor-f1');
             btns[1].classList.add('active');
         } else if (type === 'cricket') {
             document.body.classList.add('cursor-cricket');
@@ -633,7 +666,7 @@
     }
 
     window.addEventListener('keydown', (e) => {
-        if (e.key.toLowerCase() === 't') setCursor('train');
+        if (e.key.toLowerCase() === 'f') setCursor('f1');
         if (e.key.toLowerCase() === 'c') setCursor('cricket');
         if (e.key.toLowerCase() === 'escape') setCursor('default');
     });
