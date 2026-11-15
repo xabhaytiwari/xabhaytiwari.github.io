@@ -4,751 +4,106 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Abhay Tiwari</title>
-<!-- Custom Favicon: Bold 'a' + Emerald Gradient Nabla (∇) -->
+<meta name="description" content="Abhay Tiwari is an AI Scientist at DataPOEM who builds reinforcement-learning agents with mathematical guarantees.">
+<meta name="theme-color" content="#0e131d">
 <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="28" fill="%23ffffff"/><text x="36" y="70" font-family="-apple-system,BlinkMacSystemFont,SF Pro Text,Segoe UI,Roboto,sans-serif" font-size="62" font-weight="800" fill="%231c1917" text-anchor="middle">a</text><path d="M60 28 L82 28 L71 47 Z" fill="%23059669"/></svg>'>
 <style>
-    :root {
-        --bg: #faf9f6;             /* Warm alabaster canvas */
-        --surface: #ffffff;        /* Pure white cards */
-        --border: #e7e5e0;         /* Soft warm-gray border */
-        --border-hover: #d1cfc9;
-        --text-primary: #1c1917;   /* Deep slate/charcoal */
-        --text-muted: #57534e;     /* Stone 600 */
-        --text-faint: #a8a29e;     /* Stone 400 */
-        --accent: #059669;         /* Rich emerald */
-        --accent-soft: #ecfdf5;    /* Fresh mint tint */
-        --accent-border: #a7f3d0;
-        --font-serif: "Charter", "Georgia", "Cambria", serif;
-        --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        --font-mono: "SF Mono", "Fira Code", Menlo, monospace;
-        --shadow-subtle: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.02);
-        --shadow-hover: 0 4px 12px rgba(0,0,0,0.06), 0 12px 24px rgba(0,0,0,0.03);
-        --ease: cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-
-    body {
-        background-color: var(--bg);
-        color: var(--text-primary);
-        font-family: var(--font-serif);
-        line-height: 1.8;
-        font-size: 1.05rem;
-        position: relative;
-        overflow-x: hidden;
-        -webkit-font-smoothing: antialiased;
-    }
-
-    /* SMOOTH BACKGROUND PARTICLES */
-    #ambient-canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        z-index: -1;
-        pointer-events: none;
-        opacity: 0.6;
-    }
-
-    /* CUSTOM CURSORS */
-    body.cursor-f1, body.cursor-f1 * {
-        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size:24px;'><text y='24'>🏎️</text></svg>") 16 16, auto !important;
-    }
-    body.cursor-cricket, body.cursor-cricket * {
-        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size:24px;'><text y='24'>🏏</text></svg>") 16 16, auto !important;
-    }
-
-    a {
-        color: var(--accent);
-        text-decoration: none;
-        transition: all 0.2s var(--ease);
-        border-bottom: 1px solid transparent;
-    }
-
-    a:hover {
-        color: #047857;
-        border-bottom-color: var(--accent);
-    }
-
-    .container {
-        max-width: 780px;
-        margin: 0 auto;
-        padding: 3.5rem 1.8rem;
-    }
-
-    /* TOP BAR */
-    nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-bottom: 3.5rem;
-        flex-wrap: wrap;
-        gap: 1rem;
-    }
-
-    .nav-brand {
-        font-family: var(--font-mono);
-        font-size: 0.82rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--text-muted);
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .live-dot {
-        width: 7px;
-        height: 7px;
-        background: var(--accent);
-        border-radius: 50%;
-        display: inline-block;
-        box-shadow: 0 0 0 3px var(--accent-soft);
-    }
-
-    .nav-right {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .resume-link {
-        font-family: var(--font-mono);
-        font-size: 0.82rem;
-        color: var(--text-primary);
-        background: var(--surface);
-        border: 1px solid var(--border);
-        padding: 4px 12px;
-        border-radius: 20px;
-        box-shadow: var(--shadow-subtle);
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        transition: all 0.2s var(--ease);
-    }
-
-    .resume-link:hover {
-        border-color: var(--accent);
-        color: var(--accent);
-        text-decoration: none;
-    }
-
-    .cursor-switches {
-        display: flex;
-        align-items: center;
-        gap: 0.35rem;
-    }
-
-    .c-btn {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        color: var(--text-muted);
-        padding: 4px 10px;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        cursor: pointer;
-        transition: all 0.2s var(--ease);
-        font-family: var(--font-sans);
-    }
-
-    .c-btn:hover {
-        border-color: var(--border-hover);
-        color: var(--text-primary);
-    }
-
-    .c-btn.active {
-        background: var(--text-primary);
-        color: #ffffff;
-        border-color: var(--text-primary);
-    }
-
-    /* HERO */
-    .hero {
-        display: flex;
-        flex-direction: column-reverse;
-        gap: 2.5rem;
-        margin-bottom: 3rem;
-    }
-
-    .hero-name {
-        font-family: var(--font-sans);
-        font-size: 2.8rem;
-        font-weight: 600;
-        letter-spacing: -0.03em;
-        color: var(--text-primary);
-        line-height: 1.1;
-        margin-bottom: 0.2rem;
-    }
-
-    .hero-sub {
-        font-family: var(--font-mono);
-        font-size: 0.88rem;
-        color: var(--accent);
-        margin-bottom: 1.6rem;
-        display: block;
-    }
-
-    .bio p {
-        margin-bottom: 1.2rem;
-        color: var(--text-muted);
-        font-size: 1.05rem;
-    }
-
-    .bio strong {
-        color: var(--text-primary);
-        font-weight: 600;
-    }
-
-    .avatar-wrapper {
-        width: 125px;
-        flex-shrink: 0;
-    }
-
-    .avatar-img {
-        width: 100%;
-        aspect-ratio: 1/1;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 2px solid #ffffff;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        user-select: none;
-        pointer-events: none;
-    }
-
-    @media (min-width: 680px) {
-        .hero {
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-        .bio {
-            max-width: 580px;
-        }
-    }
-
-    /* QUICK CREDENTIALS BAR */
-    .proof-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-        margin-bottom: 2.8rem;
-    }
-
-    .proof-box {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 1rem;
-        text-align: center;
-        box-shadow: var(--shadow-subtle);
-    }
-
-    .proof-metric {
-        font-family: var(--font-sans);
-        font-size: 1.35rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        line-height: 1.2;
-    }
-
-    .proof-label {
-        font-family: var(--font-sans);
-        font-size: 0.75rem;
-        color: var(--text-faint);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-top: 3px;
-    }
-
-    /* RL STATUS CHIP */
-    .rl-status-pill {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 1rem 1.4rem;
-        margin-bottom: 4rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 0.8rem;
-        box-shadow: var(--shadow-subtle);
-    }
-
-    .rl-tag {
-        font-family: var(--font-mono);
-        font-size: 0.75rem;
-        color: var(--text-faint);
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-    }
-
-    .rl-val {
-        font-family: var(--font-mono);
-        font-size: 0.84rem;
-        color: var(--accent);
-        background: var(--accent-soft);
-        border: 1px solid var(--accent-border);
-        padding: 4px 12px;
-        border-radius: 20px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s var(--ease);
-    }
-
-    .rl-val:hover {
-        background: #d1fae5;
-    }
-
-    /* SECTIONS */
-    section {
-        margin-bottom: 4.5rem;
-    }
-
-    .section-title {
-        font-family: var(--font-sans);
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
-        color: var(--text-faint);
-        margin-bottom: 1.8rem;
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-    }
-
-    .section-title::after {
-        content: "";
-        flex: 1;
-        height: 1px;
-        background: var(--border);
-    }
-
-    /* INQUIRIES */
-    .inquiry-stack {
-        display: flex;
-        flex-direction: column;
-        gap: 1.3rem;
-    }
-
-    .inquiry-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 1.6rem 1.8rem;
-        box-shadow: var(--shadow-subtle);
-        transition: all 0.25s var(--ease);
-    }
-
-    .inquiry-card:hover {
-        border-color: var(--border-hover);
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-hover);
-    }
-
-    .inquiry-title {
-        font-family: var(--font-sans);
-        font-size: 1.15rem;
-        font-weight: 600;
-        color: var(--text-primary);
-        margin-bottom: 0.5rem;
-    }
-
-    .inquiry-analogy {
-        font-style: italic;
-        color: #44403c;
-        margin-bottom: 0.7rem;
-        font-size: 0.98rem;
-        border-left: 2px solid var(--accent);
-        padding-left: 0.8rem;
-    }
-
-    .inquiry-desc {
-        color: var(--text-muted);
-        font-size: 0.98rem;
-        line-height: 1.7;
-    }
-
-    /* PUBLICATION */
-    .pub-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 1.6rem 1.8rem;
-        box-shadow: var(--shadow-subtle);
-    }
-
-    .pub-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        gap: 1rem;
-        flex-wrap: wrap;
-        margin-bottom: 0.6rem;
-    }
-
-    .pub-title {
-        font-family: var(--font-sans);
-        font-size: 1.08rem;
-        font-weight: 600;
-        color: var(--text-primary);
-        line-height: 1.4;
-    }
-
-    .pub-badge {
-        font-family: var(--font-mono);
-        font-size: 0.75rem;
-        color: var(--accent);
-        background: var(--accent-soft);
-        border: 1px solid var(--accent-border);
-        padding: 2px 8px;
-        border-radius: 4px;
-        white-space: nowrap;
-    }
-
-    .pub-body {
-        color: var(--text-muted);
-        font-size: 0.95rem;
-        line-height: 1.7;
-        margin-bottom: 0.8rem;
-    }
-
-    /* FOOTER & INTERACTIVE TOAST */
-    footer {
-        border-top: 1px solid var(--border);
-        padding-top: 3rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 1.2rem;
-        font-family: var(--font-mono);
-        font-size: 0.82rem;
-        color: var(--text-muted);
-    }
-
-    .links {
-        display: flex;
-        gap: 1.2rem;
-        flex-wrap: wrap;
-    }
-
-    .copy-email-btn {
-        background: none;
-        border: none;
-        color: var(--text-muted);
-        cursor: pointer;
-        font-family: var(--font-mono);
-        font-size: 0.82rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        padding: 0;
-        transition: color 0.2s;
-    }
-
-    .copy-email-btn:hover {
-        color: var(--accent);
-    }
-
-    /* TOAST NOTIFICATION */
-    #toast {
-        position: fixed;
-        bottom: 24px;
-        right: 24px;
-        background: var(--text-primary);
-        color: #ffffff;
-        padding: 8px 16px;
-        border-radius: 8px;
-        font-family: var(--font-mono);
-        font-size: 0.78rem;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s ease, transform 0.3s var(--ease);
-        transform: translateY(10px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-
-    #toast.show {
-        opacity: 1;
-        transform: translateY(0);
-    }
+:root{color-scheme:dark;--bg:#0e131d;--line:#26324a;--t:#e9ecf2;--m:#a3aec4;--f:#7a869f;--a:#8ab4ff;--ease:cubic-bezier(.16,1,.3,1);--serif:"Charter","Georgia","Cambria",serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;--mono:"SF Mono","Fira Code",Menlo,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--t);font:1.05rem/1.75 var(--serif);-webkit-font-smoothing:antialiased}
+#bg{position:fixed;inset:0;width:100vw;height:100vh;z-index:-1;pointer-events:none;opacity:.5}
+a{color:var(--a);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--a);outline-offset:3px;border-radius:4px}
+::selection{background:rgba(138,180,255,.25)}
+main{max-width:640px;margin:0 auto;padding:5rem 1.6rem 3rem}
+.top{display:flex;align-items:center;gap:1.1rem;margin-bottom:2.4rem}
+.avatar{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--line);user-select:none;pointer-events:none}
+h1{font:600 2.3rem/1.1 var(--serif);letter-spacing:-.025em}
+.sub{font:.82rem var(--mono);color:var(--f);margin-top:.3rem}
+p{color:var(--m);margin-bottom:1.3rem}
+p b{color:var(--t);font-weight:600}
+.big{font-size:1.5rem;line-height:1.35;color:var(--t);letter-spacing:-.01em;margin-bottom:1.6rem}
+.minds{list-style:none;margin:2rem 0;border-top:1px solid var(--line)}
+.minds li{padding:.95rem 0;border-bottom:1px solid var(--line);color:var(--m);font-size:.98rem;line-height:1.6}
+.minds li b{display:block;color:var(--t);font-family:var(--sans);font-size:.95rem;font-weight:600;margin-bottom:.1rem}
+.contact{margin-top:3.2rem}
+.contact h2{font:600 1.2rem var(--serif);margin-bottom:.4rem}
+.mail{font:1.15rem var(--mono);word-break:break-all}
+.row{display:flex;flex-wrap:wrap;gap:.5rem 1.3rem;margin-top:1rem;font:.85rem var(--mono)}
+.row button{background:none;border:0;color:var(--a);font:inherit;cursor:pointer;padding:0}
+.row button:hover{text-decoration:underline;text-underline-offset:3px}
+footer{margin-top:4rem;font:.78rem var(--mono);color:var(--f)}
+#toast{position:fixed;bottom:24px;right:24px;background:var(--t);color:var(--bg);padding:8px 16px;border-radius:8px;font:.78rem var(--mono);opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .3s,transform .3s var(--ease)}
+#toast.show{opacity:1;transform:none}
+@keyframes rise{from{opacity:0;transform:translateY(12px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+@media(prefers-reduced-motion:no-preference){.top,.big{animation:rise 1s var(--ease) both}.big{animation-delay:.12s}}
+@media(max-width:520px){main{padding-top:3rem}h1{font-size:1.9rem}.big{font-size:1.3rem}}
 </style>
 </head>
 <body>
-
-<canvas id="ambient-canvas"></canvas>
-
-<div class="container">
-    <!-- NAV -->
-    <nav>
-        <div class="nav-brand">
-            <span class="live-dot"></span>
-            <span>Abhay Tiwari &bull; Research Monograph</span>
-        </div>
-        <div class="nav-right">
-            <a href="/Abhay_Tiwari_Resume.pdf?v=2" target="_blank" class="resume-link">
-                resume ↗
-            </a>
-            <div class="cursor-switches">
-                <button class="c-btn active" onclick="setCursor('default')">default</button>
-                <button class="c-btn" onclick="setCursor('f1')" title="Press 'F' on keyboard">🏎️ f1</button>
-                <button class="c-btn" onclick="setCursor('cricket')" title="Press 'C' on keyboard">🏏 cricket</button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- HERO -->
-    <header class="hero">
-        <div class="bio">
-            <h1 class="hero-name">Abhay Tiwari</h1>
-            <span class="hero-sub">अभय तिवारी &bull; IIIT Raichur ('27)</span>
-            
-            <p>
-                I am an undergraduate in AI & Data Science, formerly doing research on spatio-temporal deep learning at <strong>IIT Hyderabad</strong>.
-            </p>
-            <p>
-                Most of machine learning today is about guessing patterns from static pictures. I am obsessed with <strong>Reinforcement Learning</strong>—how an agent discovers what to do when every action changes its future. My goal is to build agents that solve problems with mathematical guarantees, not just trial and error.
-            </p>
-            <p>
-                Outside research, I'm hooked on Formula 1 telemetry, motorcycles, and the pure tactical attrition of Test cricket.
-            </p>
-        </div>
-
-        <div class="avatar-wrapper">
-            <img src="/1783696080167.png" alt="Abhay Tiwari" class="avatar-img" oncontextmenu="return false;" draggable="false">
-        </div>
-    </header>
-
-    <!-- PROOF / CONFIDENCE METRICS -->
-    <div class="proof-grid">
-        <div class="proof-box">
-            <div class="proof-metric">1st Place</div>
-            <div class="proof-label">Riverathon 2026</div>
-        </div>
-        <div class="proof-box">
-            <div class="proof-metric">Top 120</div>
-            <div class="proof-label">Amazon ML Challenge</div>
-        </div>
-        <div class="proof-box">
-            <div class="proof-metric">250+</div>
-            <div class="proof-label">Leetcode Problems</div>
-        </div>
+<canvas id="bg" aria-hidden="true"></canvas>
+<main>
+  <div class="top">
+    <img class="avatar" src="/1783696080167.png" alt="Abhay Tiwari" oncontextmenu="return false;" draggable="false">
+    <div>
+      <h1>Abhay Tiwari</h1>
+      <div class="sub">अभय तिवारी &bull; Bengaluru &bull; IIIT Raichur ('27)</div>
     </div>
+  </div>
 
-    <!-- RL DEPTH VARIABLE -->
-    <div class="rl-status-pill">
-        <span class="rl-tag">Current RL Capability</span>
-        <span class="rl-val" id="rl-depth" onclick="cycleRLLevel()" title="Click to cycle variable">
-            <!-- Injected by script -->
-        </span>
+  <p class="big">I build reinforcement-learning agents that come with mathematical guarantees.</p>
+
+  <p>I'm an <b>AI Scientist at DataPOEM</b> and an undergraduate in AI and Data Science. Until July 2026 I did research on spatio-temporal deep learning at IIT Hyderabad.</p>
+  <p>Most of machine learning guesses patterns from static pictures. I'm after something harder: how an agent works out what to do when every action changes its future, and how to prove it will. My work spans the mathematics of learning algorithms and the engineering that makes them run.</p>
+
+  <ul class="minds">
+    <li><b>What must an agent remember?</b>A map with every blade of grass is as useless as the world. What is the smallest state an agent needs to act well, and can it learn that abstraction instead of being handed it?</li>
+    <li><b>Safety by construction</b>Penalties punish a failure after it happens. Can conservation laws and constraints live inside the policy itself, so certain failures cannot occur?</li>
+    <li><b>Credit across time</b>A quiet pawn on move 12 wins the game on move 62. Can an agent trace a win to its true cause without hand-built reward breadcrumbs?</li>
+    <li><b>Structure versus scale</b>When does known physics replace millions of samples, and can we prove how many it saves?</li>
+  </ul>
+
+  <p>My <a href="https://doi.org/10.5281/zenodo.22807164" target="_blank" rel="noopener">preprint</a> asks whether smarter data selection beats random sampling. Under matched compute, it often doesn't.</p>
+
+  <div class="contact">
+    <h2>If any of this is your problem too, write to me.</h2>
+    <a class="mail" href="mailto:singhabhaytiwari@gmail.com">singhabhaytiwari@gmail.com</a>
+    <div class="row">
+      <button onclick="copyEmail()">copy email</button>
+      <a href="https://linkedin.com/in/abhay-tiwari-in" target="_blank" rel="noopener">linkedin</a>
+      <a href="https://github.com/xabhaytiwari" target="_blank" rel="noopener">github</a>
+      <a href="/Abhay_Tiwari_Resume.pdf?v=2" target="_blank" rel="noopener">resume</a>
+      <a href="https://leetcode.com/u/abhay-tiwari/" target="_blank" rel="noopener">leetcode</a>
     </div>
+  </div>
 
-    <main>
-        <!-- OPEN QUESTIONS -->
-        <section>
-            <h2 class="section-title">Open Questions I'm Exploring</h2>
-            
-            <div class="inquiry-stack">
-                <!-- 1: BORGES / THE MAP & THE WORLD -->
-                <div class="inquiry-card">
-                    <h3 class="inquiry-title">The Map vs. The World</h3>
-                    <p class="inquiry-analogy">
-                        "If you draw a map that includes every blade of grass, the map becomes as heavy and useless as the world itself."
-                    </p>
-                    <p class="inquiry-desc">
-                        Current AI models waste enormous computer power trying to predict every tiny pixel of a scene. What is the simplest outline an agent actually needs to make smart decisions? Can it learn what matters for its goals while staying happily blind to background noise?
-                    </p>
-                </div>
-
-                <!-- 2: HIDDEN CONSERVATION LAWS -->
-                <div class="inquiry-card">
-                    <h3 class="inquiry-title">Hidden Rules and Conservation</h3>
-                    <p class="inquiry-analogy">
-                        "In physical reality, energy can never be created or destroyed—it is always perfectly balanced."
-                    </p>
-                    <p class="inquiry-desc">
-                        Having worked on continuous differential equations (PINNs & the Deep Ritz Method), I want to bring physical rules into reinforcement learning. Instead of using artificial penalties when an agent wobbles, can we build mathematical guardrails directly into the decision-making loop so it cannot fail?
-                    </p>
-                </div>
-
-                <!-- 3: CREDIT ASSIGNMENT -->
-                <div class="inquiry-card">
-                    <h3 class="inquiry-title">The Decisive Move</h3>
-                    <p class="inquiry-analogy">
-                        "A quiet pawn advance on move 12 wins you the chess game 50 moves later. But standard algorithms give all the praise to the final piece capture."
-                    </p>
-                    <p class="inquiry-desc">
-                        How can an agent look back in time and accurately find the genuine root cause of its victory, instead of relying on humans to manually design artificial reward breadcrumbs?
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- PUBLICATION -->
-        <section>
-            <h2 class="section-title">Preprint & Research</h2>
-            
-            <div class="pub-card">
-                <div class="pub-header">
-                    <div class="pub-title">Does Smarter Acquisition Beat Random Sampling? A Fully-Controlled Study of Submodular, Density-Aware Active Learning for Fine-Grained Classification</div>
-                    <a href="https://doi.org/10.5281/zenodo.22807164" target="_blank" class="pub-badge">DOI ↗</a>
-                </div>
-                <p class="pub-body">
-                    A rigorous study across 10,000 fine-grained classes showing that fancy data-picking algorithms often fail to beat uniform random sampling once computing budgets are strictly normalized. Built a submodular optimization pipeline that slashes peak GPU memory by <strong>14–96×</strong>.
-                </p>
-            </div>
-        </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-        <div>&copy; 2026 Abhay Tiwari</div>
-        <div class="links">
-            <a href="/Abhay_Tiwari_Resume.pdf?v=2" target="_blank">resume (pdf)</a>
-            <a href="https://github.com/xabhaytiwari" target="_blank">github</a>
-            <a href="https://linkedin.com/in/abhay-tiwari-in" target="_blank">linkedin</a>
-            <a href="https://leetcode.com/u/abhay-tiwari/" target="_blank">leetcode</a>
-            <button class="copy-email-btn" onclick="copyEmail()">copy email 📋</button>
-        </div>
-    </footer>
-</div>
-
-<!-- TOAST ALERT -->
-<div id="toast">Email copied to clipboard!</div>
+  <footer>&copy; 2026 Abhay Tiwari</footer>
+</main>
+<div id="toast" role="status" aria-live="polite">Email copied to clipboard!</div>
 
 <script>
-    const rlLevelList = [
-        "Can prove Bellman convergence in Banach spaces",
-        "UCB1 and Median Elimination",
-        "Thompson Sampling"
-    ];
-    let rlIndex = 0;
+function copyEmail(){const t=document.getElementById('toast'),d=()=>{t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)};
+navigator.clipboard.writeText("singhabhaytiwari@gmail.com").then(d).catch(()=>{t.textContent="Copy failed: singhabhaytiwari@gmail.com";d()})}
 
-    function renderRL() {
-        document.getElementById('rl-depth').textContent = rlLevelList[rlIndex];
-    }
-    function cycleRLLevel() {
-        rlIndex = (rlIndex + 1) % rlLevelList.length;
-        renderRL();
-    }
-    renderRL();
-
-    /* COPY EMAIL TIP */
-    function copyEmail() {
-        navigator.clipboard.writeText("singhabhaytiwari@gmail.com").then(() => {
-            const toast = document.getElementById('toast');
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2200);
-        });
-    }
-
-    /* KEYBOARD SHORTCUTS & CURSOR TOGGLE */
-    function setCursor(type) {
-        document.body.classList.remove('cursor-f1', 'cursor-cricket');
-        const btns = document.querySelectorAll('.c-btn');
-        btns.forEach(b => b.classList.remove('active'));
-
-        if (type === 'f1') {
-            document.body.classList.add('cursor-f1');
-            btns[1].classList.add('active');
-        } else if (type === 'cricket') {
-            document.body.classList.add('cursor-cricket');
-            btns[2].classList.add('active');
-        } else {
-            btns[0].classList.add('active');
-        }
-    }
-
-    window.addEventListener('keydown', (e) => {
-        if (e.key.toLowerCase() === 'f') setCursor('f1');
-        if (e.key.toLowerCase() === 'c') setCursor('cricket');
-        if (e.key.toLowerCase() === 'escape') setCursor('default');
-    });
-
-    /* LIGHT-MODE AMBIENT CANVAS */
-    const canvas = document.getElementById('ambient-canvas');
-    const ctx = canvas.getContext('2d');
-    let width, height;
-
-    function resize() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    let mouse = { x: -1000, y: -1000 };
-    window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
-    window.addEventListener('mouseleave', () => { mouse.x = -1000; mouse.y = -1000; });
-
-    class Particle {
-        constructor() {
-            this.x = Math.random() * width;
-            this.y = Math.random() * height;
-            this.vx = (Math.random() - 0.5) * 0.25;
-            this.vy = (Math.random() - 0.5) * 0.25;
-            this.radius = Math.random() * 1.5 + 0.8;
-        }
-        update() {
-            const dx = mouse.x - this.x;
-            const dy = mouse.y - this.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-
-            if (dist < 120 && dist > 10) {
-                this.vx -= (dx / dist) * 0.015;
-                this.vy -= (dy / dist) * 0.015;
-            }
-
-            this.x += this.vx;
-            this.y += this.vy;
-            this.vx *= 0.99;
-            this.vy *= 0.99;
-
-            if (this.x < 0) this.x = width;
-            if (this.x > width) this.x = 0;
-            if (this.y < 0) this.y = height;
-            if (this.y > height) this.y = 0;
-        }
-        draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = '#059669';
-            ctx.globalAlpha = 0.22;
-            ctx.fill();
-        }
-    }
-
-    const particles = Array.from({ length: 45 }, () => new Particle());
-
-    function loop() {
-        ctx.clearRect(0, 0, width, height);
-
-        for (let i = 0; i < particles.length; i++) {
-            particles[i].update();
-            particles[i].draw();
-
-            for (let j = i + 1; j < particles.length; j++) {
-                const dist = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
-                if (dist < 110) {
-                    ctx.beginPath();
-                    ctx.strokeStyle = '#059669';
-                    ctx.globalAlpha = (1 - dist / 110) * 0.09;
-                    ctx.lineWidth = 0.7;
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.stroke();
-                }
-            }
-        }
-        requestAnimationFrame(loop);
-    }
-    loop();
+/* Background: particles descend a Gaussian well that follows the cursor (gradient descent) */
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+const c=document.getElementById('bg'),x=c.getContext('2d');let W,H;
+const fit=()=>{const r=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;c.width=W*r;c.height=H*r;x.setTransform(r,0,0,r,0,0)};
+fit();addEventListener('resize',fit);
+let m=null;addEventListener('pointermove',e=>{if(e.pointerType==='mouse')m={x:e.clientX,y:e.clientY}});
+document.addEventListener('mouseleave',()=>m=null);
+const S2=240*240,K=.0011,P=Array.from({length:70},()=>({}));
+const sp=p=>{p.x=Math.random()*W;p.y=Math.random()*H;p.vx=p.vy=0};P.forEach(sp);
+(function loop(t){
+x.globalCompositeOperation='destination-out';x.fillStyle='rgba(0,0,0,.07)';x.fillRect(0,0,W,H);
+x.globalCompositeOperation='source-over';x.strokeStyle='#8ab4ff';x.globalAlpha=.5;x.lineWidth=1.2;x.lineCap='round';
+const tx=m?m.x:W*(.5+.28*Math.sin(t*.00011)),ty=m?m.y:H*(.5+.22*Math.sin(t*.00017+1));
+for(const p of P){const dx=tx-p.x,dy=ty-p.y,d2=dx*dx+dy*dy,f=K*Math.exp(-d2/(2*S2));
+p.vx=(p.vx+dx*f+(Math.random()-.5)*.05)*.95;p.vy=(p.vy+dy*f+(Math.random()-.5)*.05)*.95;
+const px=p.x,py=p.y;p.x+=p.vx;p.y+=p.vy;x.beginPath();x.moveTo(px,py);x.lineTo(p.x,p.y);x.stroke();
+if(d2<100||p.x<-20||p.x>W+20||p.y<-20||p.y>H+20)sp(p)}
+requestAnimationFrame(loop)})(0)}
 </script>
 </body>
 </html>
